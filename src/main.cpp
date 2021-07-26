@@ -7,8 +7,6 @@
 #define ESP_NAME "ESPRelay"
 #define TOPIC_RELAY "sdb/radiator"
 
-IPAddress espIP(192, 168, 0, 125); // Define static IP for dns, gatewaty & subnet put in Credential.h
-
 WiFiClient espClient;
 PubSubClient clientMQTT(mqttServer, mqttPort, espClient);
 char message_buff[100];
@@ -91,7 +89,6 @@ void setup()
   delay(100);
   // init wifi
   WiFi.mode(WIFI_STA);
-  WiFi.config(espIP, dns, gateway, subnet);
   WiFi.setHostname(ESP_NAME);
   clientMQTT.setServer(mqttServer, mqttPort);
   clientMQTT.setCallback(callback);
